@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  --black: #001018;
+  --yellow: #ffea28;
+  --yellow-light: #FFF370;
+  --blue: #007dbc;
+  --gray: #f7f8f9;
+  --gray-dark:  ;
+  --red: #c31c24;
+  --green: #23A942;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--gray);
+  padding: 0 24px;
+  margin: 0;
+  font-size: 16px;
+}
+
+.error,
+.error a,
+.error a:hover,
+.error a:focus,
+.error a:visited,
+.error a:link{color: var(--red)}
+
+.success,
+.success a,
+.success a:hover,
+.success a:focus,
+.success a:visited,
+.success a:link{color: var(--green)}
+
+.backLink {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: var(--black);
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  text-decoration: none;
+}
+
+.backLink img {
+  margin-right: 16px;
+}
+
+.payment-info {
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+}
+
+.payment-info p {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--black);
+}
+.payment-info p:last-child {
+  margin-bottom: 0;
+}
+
+.payment-info-logo {
+  margin-right: 8px;
+}
+
+.payment-info-logo img {
+  width: 15.68px;
+  height: 16px;
+}
+
+.payment-options {
+  margin-top: 24px;
+}
+
+.payment-options p {
+  color: var(--black);
+  display: flex;
+}
+
+.payment-options label {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.payment-options input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.payment-options .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  /* background-color: #eee; */
+  border: 2px solid var(--gray-dark);
+}
+/* On mouse-over, add a grey background color */
+.payment-options label:hover input ~ .checkmark {
+  border-color: var(--blue);
+}
+
+/* When the checkbox is checked, add a blue background */
+.payment-options input:checked ~ .checkmark {
+  border-color: var(--blue);
+  background-color: var(--blue);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.payment-options .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.payment-options input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.payment-options .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.payment-options a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.payment-field,
+#modal {
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+h1 img {
+  margin-right: 8px;
+}
+
+form p,
+form p label,
+#modal p,
+#modal p label {
+  display: block;
+}
+
+form p,
+#modal p {
+  margin-bottom: 24px;
+  color: var(--gray-dark);
+}
+
+form p label,
+#modal p label {
+  margin-bottom: 12px;
+}
+
+form p span.option {
+  font-size: 12px;
+  margin-top: 8px;
+  display: block;
+}
+
+form .input-container,
+form input[type=text],
+#modal .input-container,
+#modal input[type=text] {
+  display: inline-block;
+  height: 2em;
+  transition: all 250ms ease-in-out;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-dark);
+  margin-bottom: 1px;
+}
+
+form .input-container.hosted-fields-valid-state,
+#modal .input-container.hosted-fields-valid-state {
+  border-color: var(--green);
+  border-width: 2px;
+  margin-bottom: 0;
+}
+
+form .input-container:not(.hosted-fields-empty-state):not(.hosted-fields-focus-state):not(.hosted-fields-valid-state):not(:empty),
+#modal .input-container:not(.hosted-fields-empty-state):not(.hosted-fields-focus-state):not(.hosted-fields-valid-state):not(:empty),
+form .input-container .error {
+  border-color: var(--red);
+  border-width: 2px;
+  margin-bottom: 0;
+}
+
+.payment-submit {
+  text-align: center;
+}
+
+form input[type=submit],
+form button,
+#modal input[type=submit],
+#modal button {
+  width: 100%;
+  max-width: 350px;
+  margin-top: 8px;
+  padding: 20px 16px 20px 16px;
+  border: 0;
+  font-weight: bold;
+  background: var(--yellow);
+  font-size: 16px;
+  color: var(--black);
+  vertical-align: baseline;
+  cursor: pointer;
+  transition: all 500ms;
+}
+
+form input[type=submit],
+form button {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form input[type=submit] img,
+form button img {
+  margin-right: 8px;
+}
+
+form input[type=submit]:hover,
+form button:hover,
+#modal input[type=submit]:hover,
+#modal button:hover {
+  background-color: var(--yellow-light);
+}
+
+#full_name-error {
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+.scanButton {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.custom-input input {
+  height: 32px;
+  border: none !important;
+  -webkit-appearance: none;
+}
+.custom-input input:focus {
+  border: none !important;
+  outline-width: 0;
+}
+
+#modal {
+  z-index: 4;
+  display: none;
+  max-width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -83px;
+  margin-left: -190px;
+  border: 1px solid var(--gray-dark);
+}
+
+#modal button {
+  background: var(--yellow);
+}
+#modal button:hover {
+  background-color: var(--yellow-light);
+}
+
+@media screen and (min-width: 320px) {
+  .payment-second-line {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .w2 {
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+  .w2:first-child {
+    padding-right: 6px;
+  }
+  
+  .w2:last-child {
+    padding-left: 6px;
+  }
+}

@@ -1,0 +1,596 @@
+{
+    "common": {
+        "careful": "Attention",
+        "exitLabel": "Voulez vous vraiment quitter l'application?",
+        "yes": "Oui",
+        "no": "Non",
+        "loading": "Chargement en cours...",
+        "today": "Aujourd'hui",
+        "tomorrow": "Demain"
+    },
+    "connection": {
+        "terms": {
+            "title": "Le respect de votre vie privée est importante pour nous",
+            "text1": "Avec nos partenaires, nous utilisons des cookies et des technologies similaires.",
+            "text2": "Ces cookies sont utiles pour améliorer votre expérience et optimiser les performances de l’application, résoudre les erreurs rencontrées, proposer de nouvelles fonctionnalités, mesurer les performances des contenus et les données statistiques d’audience. Ils nous aident aussi à vous proposer du contenu qui matche avec vos sports préférés.",
+            "text3": "Les données confiées sont traitées par DECATHLON France SE, 4 boulevard de Mons à Villeneuve d'Ascq, 59650.",
+            "buttons": {
+                "button1": {
+                    "label": "J'accepte"
+                },
+                "button2": {
+                    "label": "Non, quitter"
+                }
+            }
+        },
+        "login": {
+            "title": "Connect to your Decathlon account",
+            "subtitle": "Mauris turpis nisi, posuere nec odio nec, rhoncus iaculis urna. Quisque imperdiet quam in mauris imperdiet.",
+            "buttons": {
+                "button1": {
+                    "label": "Connection"
+                }
+            }
+        },
+        "loginWebview": {
+            "title": "Je m’identifie",
+            "subtitle": "Dkt login Webview",
+            "buttons": {
+                "button1": {
+                    "label": "Connexion"
+                }
+            }
+        }
+    },
+    "configuration": {
+        "terms": "Decathlon s’engage à ne pas communiquer vos coordonnées à des tiers, conformément au Règlement Général sur la Protection des Données.",
+        "informations": {
+            "title": "Faisons connaissance ! 😜",
+            "subtitle": "Vérifie et complète tes informations personnelles pour nous aider à personnaliser ton app !",
+            "forms": {
+                "firstname": {
+                    "labelText": "Prénom",
+                    "hintText": "Votre prénom",
+                    "errorEmpty": "Veuillez saisir votre prénom."
+                },
+                "lastname": {
+                    "labelText": "Nom",
+                    "hintText": "Votre nom",
+                    "errorEmpty": "Veuillez saisir votre nom."
+                },
+                "birthdate": {
+                    "labelText": "Date de naissance",
+                    "hintText": "01/01/2000",
+                    "errorEmpty": "Veuillez saisir votre date de naissance.",
+                    "errorFormat": "Format invalide."
+                },
+                "phone": {
+                    "labelText": "Numéro de téléphone portable",
+                    "hintText": "Votre numéro de téléphone portable",
+                    "errorEmpty": "Veuillez saisir votre numéro de téléphone portable.",
+                    "errorFormat": "Veuillez saisir un numéro de téléphone portable valide"
+                },
+                "email": {
+                    "labelText": "Adresse email",
+                    "hintText": "Votre adresse email",
+                    "errorEmpty": "Veuillez saisir votre adresse email.",
+                    "errorFormat": "Format invalide."
+                }
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Suivant"
+                }
+            }
+        },
+        "address": {
+            "title": "Quelle est ton adresse ?  🏠",
+            "subtitle": "Elle nous servira à te proposer des offres autour de chez toi !",
+            "forms": {
+                "title": {
+                    "labelText": "Intitulé",
+                    "hintText": "Domicile",
+                    "errorEmpty": "Saisissez votre intitulé."
+                },
+                "road": {
+                    "labelText": "N° et nom de la rue",
+                    "hintText": "1 rue de la République",
+                    "errorEmpty": "Veuillez saisir votre adresse."
+                },
+                "zipcode": {
+                    "labelText": "Code postal",
+                    "hintText": "38000",
+                    "errorEmpty": "Veuillez saisir votre code postal.",
+                    "errorFormat": "Format invalide."
+                },
+                "city": {
+                    "labelText": "Ville",
+                    "hintText": "Grenoble",
+                    "errorEmpty": "Veuillez saisir votre ville."
+                }
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Suivant"
+                }
+            }
+        },
+        "sync": {
+            "title": "Synchronise ton Decathlon Pass 🔑",
+            "subtitle": "Tu trouveras ton numéro au dos du pass acheté en magasin Decathlon. Attention, ce numéro est strictement personnel !",
+            "forms": {
+                "title": "Je saisis mon numéro de pass",
+                "pass": {
+                    "labelText": "N° de pass",
+                    "hintText": "0 000 000 000 - 0",
+                    "errorEmpty": "Veuillez saisir votre numéro de pass.",
+                    "errorBlocked": "Ce numéro de pass est bloqué",
+                    "errorActive": "Ce numéro de pass n'est pas actif.",
+                    "errorAssigned": "Ce numéro de pass est déjà assigné.",
+                    "errorExists": "Ce numéro de pass n'existe pas."
+                }
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Ajouter mon pass"
+                }
+            }
+        },
+        "pass": {
+            "title": "Mes pass",
+            "subtitle": "Si tu le souhaites, tu peux également ajouter d’autres pass dès maintenant !",
+            "forms": {
+                "title": "Je saisis mon numéro de pass",
+                "description": "Nous en avons besoin pour te proposer des tarifs adaptés !",
+                "pass": {
+                    "labelText": "N° de pass",
+                    "hintText": "0 000 000 000 - 0",
+                    "errorEmpty": "Veuillez saisir votre numéro de pass.",
+                    "errorExists": "Ce numéro de pass n'existe pas."
+                },
+                "firstname": {
+                    "labelText": "Prénom",
+                    "hintText": "Votre prénom",
+                    "errorEmpty": "Veuillez saisir votre prénom."
+                },
+                "lastname": {
+                    "labelText": "Nom",
+                    "hintText": "Votre nom",
+                    "errorEmpty": "Veuillez saisir votre nom."
+                },
+                "birthdate": {
+                    "labelText": "Date de naissance",
+                    "hintText": "01/01/2000",
+                    "errorEmpty": "Veuillez saisir votre date de naissance.",
+                    "errorFormat": "Format invalide."
+                }
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Ajouter un pass"
+                },
+                "button2": {
+                    "label": "Terminer"
+                }
+            },
+            "card": {
+                "options": {
+                    "button1": "Modifier",
+                    "button2": "Supprimer",
+                    "careful": "Attention",
+                    "hint": "Voulez vous vraiment supprimer ce skieur?"
+                }
+            }
+        },
+        "congrats": {
+            "title": "FÉLICITATIONS {} ! 🎉",
+            "subtitle": "Ton profil est maintenant complet, et les pistes n’attendent plus que toi !",
+            "buttons": {
+                "button1": {
+                    "label": "Trouver mon forfait !"
+                },
+                "button2": {
+                    "label": "Aller à l’accueil"
+                }
+            }
+        }
+    },
+    "profile": {
+        "home": {
+            "title": "Salut {} !",
+            "subtitle1": "Mes préférences",
+            "subtitle2": "Informations & contact",
+            "buttons": {
+                "button1": {
+                    "label": "Comment y aller ?"
+                },
+                "button2": {
+                    "label": "Se déconnecter"
+                }
+            },
+            "tabs": {
+                "orders": {
+                    "label": "Mes commandes"
+                },
+                "infos": {
+                    "label": "Informations personnelles"
+                },
+                "adresses": {
+                    "label": "Mon adresse"
+                },
+                "creditcards": {
+                    "label": "Mes CB enregistrées"
+                },
+                "pass": {
+                    "label": "Decathlon Pass"
+                },
+                "customization": {
+                    "label": "Personnalisation"
+                },
+                "favorites": {
+                    "label": "Ma station favorite"
+                },
+                "notifications": {
+                    "label": "Notifications"
+                },
+                "confidentiality": {
+                    "label": "Confidentialité"
+                },
+                "legalnotice": {
+                    "label": "Mentions légales et CGV"
+                },
+                "contact": {
+                    "label": "Contact"
+                }
+            }
+        },
+        "informations": {
+            "title": "Informations personnelles",
+            "forms": {
+                "firstname": {
+                    "labelText": "Prénom",
+                    "hintText": "Votre prénom",
+                    "errorEmpty": "Veuillez saisir votre prénom."
+                },
+                "lastname": {
+                    "labelText": "Nom",
+                    "hintText": "Votre nom",
+                    "errorEmpty": "Veuillez saisir votre nom."
+                },
+                "birthdate": {
+                    "labelText": "Date de naissance",
+                    "hintText": "01/01/2000",
+                    "errorEmpty": "Veuillez saisir votre date de naissance.",
+                    "errorFormat": "Format invalide."
+                },
+                "phone": {
+                    "labelText": "Numéro de téléphone portable",
+                    "hintText": "Votre numéro de téléphone portable",
+                    "errorEmpty": "Veuillez saisir votre numéro de téléphone portable.",
+                    "errorFormat": "Veuillez saisir un numéro de téléphone portable valide"
+                },
+                "email": {
+                    "labelText": "Adresse email",
+                    "hintText": "Votre adresse email",
+                    "errorEmpty": "Veuillez saisir votre adresse email.",
+                    "errorFormat": "Format invalide."
+                }
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Modifier ma photo de profil"
+                },
+                "button2": {
+                    "label": "Enregistrer mes modifications"
+                }
+            },
+            "modals": {
+                "title": "Modifier la photo",
+                "button1": {
+                    "label": "Prendre une photo"
+                },
+                "button2": {
+                    "label": "Ouvrir la galerie photos"
+                },
+                "button3": {
+                    "label": "Annuler"
+                }
+            }
+        },
+        "adress": {
+            "title": "Mes adresses",
+            "buttons": {
+                "button1": {
+                    "label": "Ajouter une adresse"
+                },
+                "button2": {
+                    "label": "Enregistrer mes modifications"
+                }
+            }
+        },
+        "creditcard": {
+            "title": "Mes CB",
+            "buttons": {
+                "button1": {
+                    "label": "Ajouter une CB"
+                },
+                "button2": {
+                    "label": "Enregistrer mes modifications"
+                }
+            }
+        },
+        "pass": {
+            "title": "Mes pass",
+            "buttons": {
+                "button1": {
+                    "label": "Ajouter un pass"
+                },
+                "button2": {
+                    "label": "Enregistrer mes modifications"
+                }
+            },
+            "card": {
+                "options": {
+                    "button1": "ModiAjouter un nouveau passfier",
+                    "button2": "Supprimer"
+                }
+            }
+        },
+        "orders": {
+            "title": "Mes commandes",
+            "subtitle1": "À venir",
+            "subtitle2": "Commandes passées"
+        }
+    },
+    "orders": {
+        "home": {
+            "title": "Ton forfait journée en moins d’une minute",
+            "buttons": {
+                "button1": {
+                    "label": "Comment ça marche ?"
+                }
+            },
+            "grids": {
+                "offers": {
+                    "label": "Offres du moment"
+                },
+                "advantages": {
+                    "label": "Avantages du Pass"
+                }
+            }
+        },
+        "map": {
+            "labels":{
+                "where": "Où vas-tu ?",
+                "when": "Quand ?",
+                "tariff": "Ton tarif ({}) - {}",
+                "snow": "{} cm de neige"
+            },
+            "buttons": {
+                "button1": {
+                    "label": "Me localiser"
+                },
+                "button2": {
+                    "label": "Choisir cette station"
+                }
+            },
+            "info": "La station a été définie comme favorite",
+            "datepicker": {
+                "title": "Quand pars-tu {} ?",
+                "description": "Achète ton forfait journée pour aujourd’hui avant 13h !",
+                "buttons": {
+                    "button1": {
+                        "label": "🚀 Aujourd’hui ! ",
+                        "description": "Le {}"
+                    },
+                    "button2": {
+                        "label": "⏰ Demain",
+                        "description": "Le {}"
+                    },
+                    "button3": {
+                        "label": "Choisir cette date"
+                    }
+                }
+            },
+            "search": {
+                "title": "Où vas-tu {} ?",
+                "subtitle": "Près de chez toi",
+                "buttons": {
+                    "button1": {
+                        "label": "Rechercher une station"
+                    }
+                }
+            }
+        },
+        "domain": {
+            "price": "{} € prix guichet",
+            "buttons": {
+                "button1": {
+                    "label": "Choisir ce domaine"
+                }
+            },
+            "items": {
+                "item1": {
+                    "title":"Item",
+                    "description": "Lorem ipsum dolor sit amet"
+                },
+                "item2": {
+                    "title":"Item",
+                    "description": "Lorem ipsum dolor sit amet"
+                },
+                "item3": {
+                    "title":"Item",
+                    "description": "Lorem ipsum dolor sit amet"
+                }
+            },
+            "info": "Suite à l'allocution présidentielle du 12 juillet dernier, le Pass Sanitaire est désormais obligatoire pour certains événements et sera demandé en plus d’une pièce d’identité."
+        },
+        "insurance":{
+            "title":"Souhaites-tu une assurance ?",
+            "subtitle":"Profite de ta journée sans stress grâce à l’assurance “Sécurité sur pistes” de Decathlon Assurances.",
+            "info":{
+                "title":"Assurance Journée - Sécurité sur pistes",
+                "subtitle":"Lorem ipsum dolor sit amet nunque prohibitur puella me sed ubisque non eras maeris.",
+                "price":"{} € / jour / skieur"
+            },
+            "choose":"Sélectionne les skieurs à assurer",
+            "buttons":{
+                "button1": {
+                    "label":"Ajouter mes assurances (+ {} €)"
+                },
+                "button2": {
+                    "label":"Continuer sans assurance"
+                }
+            }
+        },
+        "pass":{
+            "title":"Qui part à {} ?",
+            "card":{
+                "added": "Ajouté",
+                "notadded": "Ajouter",
+                "mytariff": "Mon tarif ({})",
+                "histariff": "Son tarif ({})"
+            },
+            "buttons":{
+                "button1": {
+                    "label":"Ajouter un nouveau pass"
+                },
+                "button2": {
+                    "label":"Ajouter mes skieurs ({} €)"
+                }
+            }
+        }
+    },
+    "commentButtons": "********** BUTTON LABELS **********",
+    "acceptButtonLabel": "J’accepte",
+    "refuseTermsButtonLabel": "Non, quitter",
+    "connexionButtonLabel": "Connexion",
+    "goToConnexionButtonLabel": "Je me connecte",
+    "nextButtonLabel": "Suivant",
+    "addMyPassButtonLabel": "Ajouter mon pass",
+    "addPassButtonLabel": "Ajouter un pass",
+    "addThisPassButtonLabel": "Ajouter ce pass",
+    "endButtonLabel": "Terminer",
+    "modifyButtonLabel": "Modifier",
+    "deleteButtonLabel": "Supprimer",
+    "chooseDateButtonLabel": "Choisir cette date",
+    "findMyPassButtonLabel": "Trouver mon forfait !",
+    "goToHomeButtonLabel": "Aller à l’accueil",
+    "howItWorksButtonLabel": "Comment ça marche ?",
+    "seeAllButtonLabel": "Tout voir",
+    "locateMeButtonLabel": "Me localiser",
+    "homeButtonLabel": "Accueil",
+    "exploreButtonLabel": "Explorer",
+    "notificationsButtonLabel": "Notifications",
+    "profileButtonLabel": "Profil",
+    "cartButtonLabel": "Panier",
+    "chooseDomainButtonLabel": "Choisir ce domaine",
+    "seeAllPricesButtonLabel": "Voir tous les tarifs",
+    "phoneButtonLabel": "Téléphoner",
+    "writeButtonLabel": "Écrire",
+    "goToButtonLabel": "M’y rendre",
+    "addedButtonLabel": "Ajouté",
+    "notAddedButtonLabel": "Ajouter",
+    "addNewPassButtonLabel": "Ajouter un nouveau pass",
+    "addSkiersButtonLabel": {
+        "other": "Ajouter mes skieurs ({} €)"
+    },
+    "addInsurrancesButtonLabel": {
+        "other": "Ajouter mes assurances (+ {} €)"
+    },
+    "continueNoInsurranceButtonLabel": "Continuer sans assurance",
+    "paymentButtonLabel": {
+        "other": "Paiement sécurisé ({} €)"
+    },
+    "howToGoButtonLabel": "Comment y aller ?",
+    "seeInAccountButtonLabel": "Voir sur mon compte",
+    "disconnectButtonLabel": "Se déconnecter",
+    "saveChangesButtonLabel": "Enregistrer mes modifications",
+    "modifyPictureButtonLabel": "Modifier ma photo de profil",
+    "takephotoButtonLabel": "Prendre une photo",
+    "pickFromMediaButtonLabel": "Ouvrir la galerie photos",
+    "cancelButtonLabel": "Annuler",
+    "addAdressButtonLabel": "Ajouter une adresse",
+    "addCBButtonLabel": "Ajouter une CB",
+    "endCommentButtons": "********** END BUTTON LABELS **********",
+    "commentTitles": "********** TITLE LABELS **********",
+    "termsTitleLabel": "Le respect de votre vie privée est importante pour nous",
+    "loginTitleLabel": "Connecte-toi à ton compte Decathlon",
+    "loginWebviewTitleLabel": "Je m’identifie",
+    "configInfosTitleLabel": "Faisons connaissance ! 😜",
+    "configAdressTitleLabel": "Quelle est ton adresse ?  🏠",
+    "configSyncTitleLabel": "Synchronise ton Decathlon Pass 🔑",
+    "configPassTitleLabel": "Mes pass",
+    "configCongratsTitleLabel": "Félicitations {} ! 🎉",
+    "addPassTitleLabel": "Ajouter un pass",
+    "modalResortsTitleLabel": "Où vas-tu ",
+    "modalCalendarTitleLabel": "Quand pars-tu ",
+    "homeTitleLabel": "Ton forfait journée en moins d’une minute",
+    "homeSubTitleLabel1": "Offres du moment",
+    "homeSubTitleLabel2": "Avantages du Pass",
+    "usersTitleLabel": "Qui part à ",
+    "insuranceTitleLabel": "Souhaites-tu une assurance ?",
+    "cartTitleLabel": "Panier",
+    "paymentTitleLabel": "Paiement sécurisé",
+    "confirmationTitleLabel": "TES PASS SONT CHARGÉS !",
+    "profileTitleLabel": "Salut ",
+    "profileOrdersTitleLabel": "Mes commandes",
+    "profileMenuTitleLabel": "Informations personnelles",
+    "profileAdressesTitleLabel": "Mes adresses",
+    "profileCBTitleLabel": "Mes CB",
+    "profilePassTitleLabel": "Mes Decathlon Pass",
+    "notificationsTitleLabel": "Mes notifications",
+    "endCommentTitles": "********** END TITLE LABELS **********",
+    "commentTexts": "********** TEXT LABELS **********",
+    "termsParagraph1TextLabel": "Avec nos partenaires, nous utilisons des cookies et des technologies similaires.",
+    "termsParagraph2TextLabel": "Ces cookies sont utiles pour améliorer votre expérience et optimiser les performances de l’application, résoudre les erreurs rencontrées, proposer de nouvelles fonctionnalités, mesurer les performances des contenus et les données statistiques d’audience. Ils nous aident aussi à vous proposer du contenu qui matche avec vos sports préférés.",
+    "termsParagraph3TextLabel": "Les données confiées sont traitées par DECATHLON France SE, 4 boulevard de Mons à Villeneuve d'Ascq, 59650.",
+    "loginTextLabel": "Mauris turpis nisi, posuere nec odio nec, rhoncus iaculis urna. Quisque imperdiet quam in mauris imperdiet.",
+    "loginWebviewTextLabel": "Dkt login Webview",
+    "configInfosTextLabel": "Vérifie et complète tes informations personnelles pour nous aider à personnaliser ton app !",
+    "configAdressTextLabel": "Elle nous servira à te proposer des offres autour de chez toi !",
+    "configSyncTextLabel1": "Tu trouveras ton numéro au dos du pass acheté en magasin Decathlon. Attention, ce numéro est strictement personnel !",
+    "configSyncTextLabel2": "Je saisis mon numéro de pass",
+    "configPassTextLabel": "Si tu le souhaites, tu peux également ajouter d’autres pass dès maintenant !",
+    "configCongratsTextLabel": "Ton profil est maintenant complet, et les pistes n’attendent plus que toi !",
+    "addPassTextLabel": "Nous en avons besoin pour te proposer des tarifs adaptés !",
+    "modalResortsTextLabel": "Rechercher une station",
+    "modalCalendarTextLabel": "Achètes ton forfait journée pour aujourd’hui avant 13h !",
+    "homeTextLabel": "",
+    "resortTextLabel": "Suite à l'allocution présidentielle du 12 juillet dernier, le Pass Sanitaire est désormais obligatoire pour certains événements et sera demandé en plus d’une pièce d’identité. ",
+    "usersTextLabel": "",
+    "insuranceTextLabel": "Profite de ta journée sans stress grâce à l’assurance “Sécurité sur pistes” de Decathlon Assurances.",
+    "insuranceInfoTextLabel1": "Assurance Journée - Sécurité sur pistes",
+    "insuranceInfoTextLabel2": "Lorem ipsum dolor sit amet nunque prohibitur puella me sed ubisque non eras maeris.",
+    "insuranceUsersTextLabel": "Sélectionne les skieurs à assurer",
+    "cartTextLabel": "",
+    "paymentSaveTextLabel": "Enregistrer pour les prochains achats",
+    "paymentTermsTextLabel": "J’ai lu et j’accepte les conditions généralesde Decathlon",
+    "confirmationTextLabel": "Rendez-vous à ",
+    "confirmationDetailsTextLabel": "Details de la commande N°",
+    "profileTextLabel": {
+        "zero": "Tu n'as aucun évènement à venir ! 😞",
+        "one": "Tu as {} évènement à venir ! 😜",
+        "two": "Tu as {} évènements à venir ! 😜",
+        "many": "{} entrées disponibles",
+        "other": "{} entrées disponibles"
+    },
+    "profileOrdersToComeTextLabel": "À venir",
+    "profileOrdersPassesTextLabel": "Commandes passées",
+    "profileMenuTextLabel": "Informations personnelles",
+    "nameTextLabel": "Prénom",
+    "lastNameTextLabel": "Nom",
+    "lastNameHintTextLabel": "Nom de famille",
+    "birthTextLabel": "Date de naissance",
+    "birthHintTextLabel": "JJ/MM/AAAA",
+    "phoneTextLabel": "Numéro de téléphone",
+    "emailTextLabel": "Adresse email",
+    "passTextLabel": "N° de pass",
+    "passHintTextLabel": "12 chiffres au dos du pass",
+    "zipCodeTextLabel": "Code postal",
+    "cityTextLabel": "Ville",
+    "adressTextLabel": "N° et nom de la rue",
+    "todayTextLabel": "Aujourd'hui",
+    "tomorrowTextLabel": "Demain",
+    "endCommentTexts": "********** END TEXT LABELS **********"
+}

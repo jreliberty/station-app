@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "248606593365",
+    "project_id": "station-app-66c79",
+    "storage_bucket": "station-app-66c79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248606593365:android:cf980cb7848c32bee61fdc",
+        "android_client_info": {
+          "package_name": "com.eliberty.station_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248606593365-6etsm8fq6plm13la5g08igti6c3om7fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBH0w-b9d7LJWnfuT6ptVQDqZJsCBFqYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248606593365-6etsm8fq6plm13la5g08igti6c3om7fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

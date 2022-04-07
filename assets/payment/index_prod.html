@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script type="text/javascript"
+        src="https://js.dalenys.com/hosted-fields/v2.0.0/hosted-fields.min.js"></script>
+    <script>
+        var DALENYS_APIKEY_ID = '';
+        var DALENYS_APIKEY = '';
+    </script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div id="payment">
+        <form id="payment-form" method="post" name="dalenysForm">
+            <div class="payment-field">
+                <h1><img src="./images/bank-card.png" alt="Carte bancaire" />Carte bancaire</h1>
+                <div class="w1">
+                    <p>
+                        <label>Numéro</label>
+                        <span class="input-container" id="card-container"></span>
+                    </p>
+                </div>
+                <div class="w1 custom-input">
+                    <p>
+                        <label>Nom et prénom du titulaire</label>
+                        <span class="input-container hosted-fields-empty-state">
+                            <input type="text" id="full_name" name="full_name" />
+                        </span>
+                    </p>
+                </div>
+                <div class="payment-second-line">
+                    <div class="w2">
+                        <p>
+                            <label>Expire fin</label>
+                            <span class="input-container" id="expiry-container"></span>
+                        </p>
+                    </div>
+                    <div class="w2">
+                        <p>
+                            <label>CVV</label>
+                            <span class="input-container" id="cvv-container"></span>
+                            <span class="option">3 chiffres au dos </span>
+                        </p>
+                    </div>
+                    <div class="w1">
+                        <p>
+                            <label>Type de carte</label>
+                            <span class="input-container" id="brand-container"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-info-logo">
+                        <img src="./images/securPayment.png" alt="payement sécurisé" />
+                    </div>
+                    <div class="payment-info-content">
+                        <p>
+                            Le paiement est effectué sur le serveur de votre banque. Decathlon Pass n’a pas accès à vos
+                            données bancaires.
+                        </p>
+                        <p>
+                            <img src="./images/CB.png" alt="Visa" />
+                            <img src="./images/CB-1.png" alt="Master card" />
+                            <img src="./images/CB-2.png" alt="American express" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-options">
+                <p>
+                    <label for="acceptCGV"><input type="checkbox" id="acceptCGV" name="acceptCGV" /><span
+                            class="checkmark"></span> J’ai lu et j’accepte les <a href="javascript:openCGV();">conditions générales</a> de
+                        la station</label>
+                </p>
+
+            </div>
+            <div class="payment-submit">
+                <div class="w1">
+                    <p>
+                        <button type="submit" id="paymentSubmit">
+                            <img src="./images/securPayment.png" alt="payement sécurisé" />
+                            Valider le paiement
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
