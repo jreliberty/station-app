@@ -263,12 +263,12 @@ class _PageGoogleMapsState extends State<PageGoogleMaps> {
                     : LatLng(
                         listStations
                             .where((element) =>
-                                element.name.toLowerCase().contains('huez'))
+                                element.name.toLowerCase().contains(''))
                             .first
                             .latitude,
                         listStations
                             .where((element) =>
-                                element.name.toLowerCase().contains('huez'))
+                                element.name.toLowerCase().contains(''))
                             .first
                             .longitude),
                 zoom: ZOOM,

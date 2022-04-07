@@ -13,7 +13,9 @@ import '../../../core/tiles/tooltip_price_domain.dart';
 import '../../../entities/config.dart';
 import '../../../entities/contact.dart';
 import '../../../entities/domain.dart';
+import '../../../entities/prices_info.dart';
 import '../../../entities/station.dart';
+import '../../../entities/validity.dart';
 import '../../../route_order/domain/widgets/tooltip_price_tile.dart';
 
 class DomainCard extends StatefulWidget {
@@ -430,7 +432,17 @@ class _DomainCardState extends State<DomainCard> {
                                                             .format(widget
                                                                 .startDate),
                                                         selectedContacts: widget
-                                                            .selectedContacts));
+                                                            .selectedContacts,
+                                                        selectedValidity: Validity(
+                                                            label: "1 Jour",
+                                                            shortName: "1DAY",
+                                                            pricesInfo: PricesInfo(
+                                                                startDate: "",
+                                                                consumerCategory:
+                                                                    "",
+                                                                bestPrice: 0,
+                                                                basePrice:
+                                                                    0))));
                                               }
                                             },
                                             child: Text(
@@ -438,7 +450,8 @@ class _DomainCardState extends State<DomainCard> {
                                               style: GoogleFonts.roboto(
                                                   fontSize: 15,
                                                   //color: Color(#687787),
-                                                  color: ColorsApp.ContentPrimaryReversed,
+                                                  color: ColorsApp
+                                                      .ContentPrimaryReversed,
                                                   fontWeight: FontWeight.w700),
                                             )),
                                       ),
@@ -465,7 +478,8 @@ class _DomainCardState extends State<DomainCard> {
                                             style: GoogleFonts.roboto(
                                                 fontSize: 15,
                                                 //color: Color(#687787),
-                                                color: ColorsApp.ContentPrimaryReversed,
+                                                color: ColorsApp
+                                                    .ContentPrimaryReversed,
                                                 fontWeight: FontWeight.w700),
                                           )),
                                     ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:station/entities/prices_info.dart';
+import 'package:station/entities/validity.dart';
 
 import '../../../blocs/cart/cart_bloc.dart';
 import '../../../blocs/consumer/consumer_bloc.dart';
@@ -103,7 +105,15 @@ class _PageFirstPassDomainState extends State<PageFirstPassDomain> {
                   domain: widget.domain,
                   station: widget.station,
                   startDate: widget.startDate,
-                  selectedContacts: []));
+                  selectedContacts: [],
+                  selectedValidity: Validity(
+                      label: "1 Jour",
+                      shortName: "1DAY",
+                      pricesInfo: PricesInfo(
+                          startDate: "",
+                          consumerCategory: "",
+                          bestPrice: 0,
+                          basePrice: 0))));
             }
             if (state is ConsumerLoadFailure)
               ScaffoldMessenger.of(context).showSnackBar(

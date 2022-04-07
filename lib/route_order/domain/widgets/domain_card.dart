@@ -13,7 +13,9 @@ import '../../../constants/colors.dart';
 import '../../../core/tiles/tooltip_price_domain.dart';
 import '../../../entities/config.dart';
 import '../../../entities/domain.dart';
+import '../../../entities/prices_info.dart';
 import '../../../entities/station.dart';
+import '../../../entities/validity.dart';
 import '../pages/page_first_pass_domain.dart';
 import 'tooltip_price_tile.dart';
 
@@ -496,14 +498,28 @@ class _DomainCardState extends State<DomainCard> {
                                                             context)
                                                         .add(GetFirstSimulationEvent(
                                                             user: state.user,
-                                                            domain:
-                                                                widget.domain,
+                                                            domain: widget
+                                                                .domain,
                                                             station:
                                                                 widget.station,
                                                             startDate: formatter
-                                                                .format(widget
-                                                                    .startDate!),
-                                                            selectedContacts: []));
+                                                                .format(
+                                                                    widget
+                                                                        .startDate!),
+                                                            selectedContacts: [],
+                                                            selectedValidity: Validity(
+                                                                label: "1 Jour",
+                                                                shortName:
+                                                                    "1DAY",
+                                                                pricesInfo: PricesInfo(
+                                                                    startDate:
+                                                                        "",
+                                                                    consumerCategory:
+                                                                        "",
+                                                                    bestPrice:
+                                                                        0,
+                                                                    basePrice:
+                                                                        0))));
                                                   } else {
                                                     if (state.user.firstName ==
                                                             '' ||

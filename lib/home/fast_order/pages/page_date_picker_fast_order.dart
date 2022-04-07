@@ -9,8 +9,10 @@ import '../../../blocs/fast_cart/fast_cart_bloc.dart';
 import '../../../constants/colors.dart';
 import '../../../entities/contact.dart';
 import '../../../entities/domain.dart';
+import '../../../entities/prices_info.dart';
 import '../../../entities/station.dart';
 import '../../../entities/user.dart';
+import '../../../entities/validity.dart';
 import '../../functions/string_extension.dart';
 
 class PageDatePickerFastOrder extends StatefulWidget {
@@ -437,7 +439,15 @@ class _PageDatePickerFastOrderState extends State<PageDatePickerFastOrder> {
                               domain: widget.domain,
                               station: widget.station,
                               startDate: formatter.format(selectedDate),
-                              selectedContacts: widget.selectedContacts));
+                              selectedContacts: widget.selectedContacts,
+                              selectedValidity: Validity(
+                                  label: "1 Jour",
+                                  shortName: "1DAY",
+                                  pricesInfo: PricesInfo(
+                                      startDate: "",
+                                      consumerCategory: "",
+                                      bestPrice: 0,
+                                      basePrice: 0))));
                       Navigator.of(context).pop();
                     },
                     child: Text(

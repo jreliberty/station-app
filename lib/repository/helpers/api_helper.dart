@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../entities/contact.dart';
 
 import '../../entities/advantage.dart';
 import '../../entities/api_exception.dart';
 import '../../entities/cart.dart';
+import '../../entities/contact.dart';
 import '../../entities/domain.dart';
 import '../../entities/offer.dart';
 import '../../entities/order/order.dart';
@@ -17,6 +17,7 @@ import '../../entities/push_notification.dart';
 import '../../entities/station.dart';
 import '../../entities/token.dart';
 import '../../entities/user.dart';
+import '../../entities/validity.dart';
 import '../../entities/violation_error.dart';
 import '../api_client.dart';
 
@@ -59,7 +60,8 @@ class ApiHelper {
       {required List<Contact> contacts,
       required Station station,
       required Domain domain,
-      required String startDate}) {
+      required String startDate,
+      required Validity selectedValidity}) {
     var params = <String, dynamic>{};
     contacts.forEach((element) {
       params['sk[${element.index}][age]'] = element.age.toString();
@@ -67,7 +69,7 @@ class ApiHelper {
     params['ctid'] = station.contractorId.toString();
     params['s'] = startDate;
     params['pc'] = domain.shortname;
-    params['vc'] = '1DAY';
+    params['vc'] = selectedValidity.shortName;
     return params;
   }
 
@@ -76,7 +78,8 @@ class ApiHelper {
       required Station station,
       required Domain domain,
       required String startDate,
-      required List<Contact> selectedContacts}) {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) {
     var params = <String, dynamic>{};
     selectedContacts.forEach((element) {
       params['sk[${element.index}][age]'] = element.age.toString();
@@ -84,7 +87,7 @@ class ApiHelper {
     params['ctid'] = station.contractorId.toString();
     params['s'] = startDate;
     params['pc'] = domain.shortname;
-    params['vc'] = '1DAY';
+    params['vc'] = selectedValidity.shortName;
     return params;
   }
 
@@ -92,7 +95,8 @@ class ApiHelper {
       {required User user,
       required Station station,
       required Domain domain,
-      required String startDate}) {
+      required String startDate,
+      required Validity selectedValidity}) {
     var params = <String, dynamic>{};
     user.contacts.forEach((element) {
       params['sk[${element.index}][age]'] = element.age.toString();
@@ -100,7 +104,7 @@ class ApiHelper {
     params['ctid'] = station.contractorId.toString();
     params['s'] = startDate;
     params['pc'] = domain.shortname;
-    params['vc'] = '1DAY';
+    params['vc'] = selectedValidity.shortName;
     return params;
   }
 
@@ -138,7 +142,7 @@ class ApiHelper {
     params['ctid'] = cart.station.contractorId.toString();
     params['s'] = formatter.format(cart.startDate);
     params['pc'] = cart.domain.shortname;
-    params['vc'] = cart.validity;
+    params['vc'] = cart.selectedValidity;
     print(params);
     return params;
   }

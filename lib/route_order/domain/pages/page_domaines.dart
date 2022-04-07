@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'package:station/route_order/validity/pages/page_selection_validity.dart';
 
 import '../../../blocs/cart/cart_bloc.dart';
 import '../../../blocs/stations/stations_bloc.dart';
@@ -59,7 +60,7 @@ class _PageDomainesState extends State<PageDomaines> {
           canGo = false;
           canGo = await Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      PageSelectionPass(station: station))) ??
+                      PageSelectionValidity(station: station))) ??
               true;
         }
       },

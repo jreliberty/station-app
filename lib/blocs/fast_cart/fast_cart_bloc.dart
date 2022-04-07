@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:station/entities/validity.dart';
 
 import '../../entities/api_exception.dart';
 import '../../entities/cart.dart';
@@ -27,7 +28,7 @@ class FastCartBloc extends Bloc<FastCartEvent, FastCartState> {
             station: event.station,
             domain: event.domain,
             startDate: event.startDate,
-            selectedContacts: event.selectedContacts);
+            selectedContacts: event.selectedContacts, selectedValidity: event.selectedValidity);
         List<Contact> selectedContacts = [];
         if (event.selectedContacts.isNotEmpty)
           event.selectedContacts.forEach((element) {
@@ -54,7 +55,7 @@ class FastCartBloc extends Bloc<FastCartEvent, FastCartState> {
             station: event.station,
             domain: event.domain,
             startDate: event.startDate,
-            selectedContacts: event.selectedContacts);
+            selectedContacts: event.selectedContacts,selectedValidity: event.selectedValidity);
             List<Contact> selectedContacts = [];
         if (event.selectedContacts.isNotEmpty)
           event.selectedContacts.forEach((element) {

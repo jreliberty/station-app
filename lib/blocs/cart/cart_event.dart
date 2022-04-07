@@ -12,6 +12,7 @@ class GetFirstSimulationEvent extends CartEvent {
   final Station station;
   final Domain domain;
   final String startDate;
+  final Validity selectedValidity;
   final List<Contact> selectedContacts;
 
   GetFirstSimulationEvent({
@@ -19,6 +20,7 @@ class GetFirstSimulationEvent extends CartEvent {
     required this.domain,
     required this.user,
     required this.startDate,
+    required this.selectedValidity,
     required this.selectedContacts,
   });
 }
@@ -28,6 +30,7 @@ class GetFirstSimulationEventWithPossiblePromoEvent extends CartEvent {
   final Station station;
   final Domain domain;
   final String startDate;
+  final Validity selectedValidity;
   final List<Contact> selectedContacts;
 
   GetFirstSimulationEventWithPossiblePromoEvent({
@@ -36,6 +39,7 @@ class GetFirstSimulationEventWithPossiblePromoEvent extends CartEvent {
     required this.user,
     required this.startDate,
     required this.selectedContacts,
+    required this.selectedValidity,
   });
 }
 

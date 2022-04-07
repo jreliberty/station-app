@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:station/entities/validity.dart';
 
 import 'contact.dart';
 import 'domain.dart';
@@ -12,7 +13,7 @@ class Cart extends Equatable {
   final Station station;
   final Domain domain;
   DateTime startDate;
-  final String validity;
+  Validity? selectedValidity;
   List<Contact> contacts;
   List<Contact> selectedContacts;
   List<Contact> selectedInsurances;
@@ -24,7 +25,7 @@ class Cart extends Equatable {
     required this.station,
     required this.domain,
     required this.startDate,
-    required this.validity,
+    required this.selectedValidity,
     required this.contacts,
     required this.selectedContacts,
     required this.selectedInsurances,
@@ -68,7 +69,8 @@ class Cart extends Equatable {
       required User user,
       required Station station,
       required Domain domain,
-      required List<Contact> selectedContacts}) {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) {
     DateTime? startDate = DateTime.tryParse(json['firstSkiDate']);
     var contacts = user.contacts;
     var selectedContactsTemp = selectedContacts;
@@ -108,7 +110,7 @@ class Cart extends Equatable {
         domain: domain,
         startDate: startDate!,
         contacts: contacts,
-        validity: '1DAY',
+        selectedValidity: selectedValidity,
         selectedContacts: selectedContactsTemp,
         selectedInsurances: [],
         insurance: insurance,
@@ -148,7 +150,8 @@ class Cart extends Equatable {
       required User user,
       required Station station,
       required Domain domain,
-      required List<Contact> selectedContacts}) {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) {
     DateTime? startDate = DateTime.tryParse(json['firstSkiDate']);
     var contacts = user.contacts;
     var selectedContactsTemp = selectedContacts;
@@ -188,7 +191,7 @@ class Cart extends Equatable {
         domain: domain,
         startDate: startDate!,
         contacts: contacts,
-        validity: '1DAY',
+        selectedValidity: selectedValidity,
         selectedContacts: selectedContactsTemp,
         selectedInsurances: [],
         insurance: insurance,

@@ -24,8 +24,10 @@ import '../../entities/advantage.dart';
 import '../../entities/contact.dart';
 import '../../entities/domain.dart';
 import '../../entities/offer.dart';
+import '../../entities/prices_info.dart';
 import '../../entities/station.dart';
 import '../../entities/user.dart';
+import '../../entities/validity.dart';
 import '../../route_order/domain/pages/page_domaines.dart';
 import '../../route_order/map/functions/geolocate.dart';
 import '../../route_order/map/pages/page_date_picker.dart';
@@ -125,7 +127,14 @@ class _PageHomeState extends State<PageHome> {
                       domain: domainFastOrder,
                       station: stationFastOrder,
                       startDate: formatter.format(dateFastOrder),
-                      selectedContacts: selectectedContacts));
+                      selectedContacts: selectectedContacts,selectedValidity: Validity(
+                                  label: "1 Jour",
+                                  shortName: "1DAY",
+                                  pricesInfo: PricesInfo(
+                                      startDate: "",
+                                      consumerCategory: "",
+                                      bestPrice: 0,
+                                      basePrice: 0))));
               isOrdersEmpty = false;
             }
           }

@@ -181,7 +181,7 @@ class _SplashScreenState extends State<SplashScreen>
               child: Center(
                   child: Container(
                       child: Image.asset(
-                "assets/splashscreen/logo.png",
+                "assets/splashscreen/logo-baseline-rvb.png",
                 height: 130,
                 width: 270,
                 //fit: BoxFit.cover,

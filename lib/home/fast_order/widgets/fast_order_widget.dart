@@ -299,7 +299,7 @@ class _FastOrderWidgetState extends State<FastOrderWidget> {
                     station: widget.cart.station,
                     domain: widget.cart.domain,
                     startDate: widget.cart.startDate,
-                    validity: widget.cart.validity,
+                    selectedValidity: widget.cart.selectedValidity,
                     contacts: widget.cart.contacts,
                     selectedContacts: widget.cart.selectedContacts,
                     selectedInsurances: widget.cart.selectedInsurances,

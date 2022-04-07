@@ -13,21 +13,25 @@ class GetFirstSimulationFastCartEvent extends FastCartEvent {
   final Domain domain;
   final String startDate;
   final List<Contact> selectedContacts;
+  final Validity selectedValidity;
 
   GetFirstSimulationFastCartEvent(
       {required this.station,
       required this.domain,
       required this.user,
       required this.startDate,
-      required this.selectedContacts});
+      required this.selectedContacts,
+      required this.selectedValidity});
 }
 
-class GetFirstSimulationFastCartEventWithPossiblePromoEvent extends FastCartEvent {
+class GetFirstSimulationFastCartEventWithPossiblePromoEvent
+    extends FastCartEvent {
   final User user;
   final Station station;
   final Domain domain;
   final String startDate;
   final List<Contact> selectedContacts;
+  final Validity selectedValidity;
 
   GetFirstSimulationFastCartEventWithPossiblePromoEvent({
     required this.station,
@@ -35,6 +39,7 @@ class GetFirstSimulationFastCartEventWithPossiblePromoEvent extends FastCartEven
     required this.user,
     required this.startDate,
     required this.selectedContacts,
+    required this.selectedValidity,
   });
 }
 
@@ -44,7 +49,4 @@ class SetFastCartEvent extends FastCartEvent {
   SetFastCartEvent({required this.cart});
 }
 
-class EmptyFastCartEvent extends FastCartEvent {
-  
-}
-
+class EmptyFastCartEvent extends FastCartEvent {}

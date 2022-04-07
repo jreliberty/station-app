@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:station/entities/validity.dart';
 
 import '../../../blocs/consumer/consumer_bloc.dart';
 import '../../../blocs/stations/stations_bloc.dart';
@@ -116,7 +117,7 @@ class _OrderCardState extends State<OrderCard> {
         station: station,
         domain: domain,
         startDate: aDate,
-        validity: '',
+        selectedValidity: null,
         contacts: contacts,
         selectedContacts: [],
         selectedInsurances: [],

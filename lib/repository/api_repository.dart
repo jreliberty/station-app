@@ -15,6 +15,7 @@ import '../entities/push_notification.dart';
 import '../entities/station.dart';
 import '../entities/token.dart';
 import '../entities/user.dart';
+import '../entities/validity.dart';
 import 'api_client.dart';
 
 class ApiRepository {
@@ -123,9 +124,15 @@ class ApiRepository {
       required Station station,
       required Domain domain,
       required String startDate,
-      required List<Contact> selectedContacts}) {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) {
     return apiClient.getFirstSimulation(
-        user: user, station: station, domain: domain, startDate: startDate, selectedContacts: selectedContacts);
+        user: user,
+        station: station,
+        domain: domain,
+        startDate: startDate,
+        selectedContacts: selectedContacts,
+        selectedValidity: selectedValidity);
   }
 
   Future<Cart> getFirstSimulationWithPossiblePromo(
@@ -133,13 +140,15 @@ class ApiRepository {
       required Station station,
       required Domain domain,
       required String startDate,
-      required List<Contact> selectedContacts}) {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) {
     return apiClient.getFirstSimulationWithPossiblePromo(
         user: user,
         station: station,
         domain: domain,
         startDate: startDate,
-        selectedContacts: selectedContacts);
+        selectedContacts: selectedContacts,
+        selectedValidity: selectedValidity);
   }
 
   // Future<FastCart> getFirstSimulationFastCart(

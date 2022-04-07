@@ -55,12 +55,14 @@ class _PageSelectionPassState extends State<PageSelectionPass> {
                 var cartTemp = (BlocProvider.of<CartBloc>(context).state
                         as CartLoadSuccess)
                     .cart;
+                print(cart.selectedValidity);
                 BlocProvider.of<CartBloc>(context).add(GetFirstSimulationEvent(
                     station: cartTemp.station,
                     domain: cartTemp.domain,
                     user: state.user,
-                    startDate: formatter.format(cart.startDate),
-                    selectedContacts: cartTemp.selectedContacts));
+                    startDate: formatter.format(cartTemp.startDate),
+                    selectedContacts: cartTemp.selectedContacts,
+                    selectedValidity: cartTemp.selectedValidity!));
               }
             }
           },
@@ -73,6 +75,7 @@ class _PageSelectionPassState extends State<PageSelectionPass> {
             builder: (context, state) {
               globalPrice = 0;
               if (state is CartLoadSuccess) {
+                print(state.cart.selectedValidity);
                 cart = state.cart;
                 cart.contacts.sort((a, b) => a.index.compareTo(b.index));
                 if (cart.selectedContacts.isNotEmpty &&
@@ -90,7 +93,8 @@ class _PageSelectionPassState extends State<PageSelectionPass> {
                             domain: cart.domain,
                             user: user!,
                             startDate: formatter.format(cart.startDate),
-                            selectedContacts: cart.selectedContacts));
+                            selectedContacts: cart.selectedContacts,
+                            selectedValidity: cart.selectedValidity!));
                   } else
                     isNotJustLoaded = false;
                 } else if (cart.selectedContacts.isNotEmpty &&
@@ -106,7 +110,8 @@ class _PageSelectionPassState extends State<PageSelectionPass> {
                             domain: cart.domain,
                             user: user!,
                             startDate: formatter.format(cart.startDate),
-                            selectedContacts: cart.selectedContacts));
+                            selectedContacts: cart.selectedContacts,
+                            selectedValidity: cart.selectedValidity!));
                   } else {
                     isNotJustLoaded = false;
                     if (cart.promotions.isNotEmpty && !popUpPromo) {

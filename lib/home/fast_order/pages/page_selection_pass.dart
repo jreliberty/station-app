@@ -11,7 +11,9 @@ import '../../../constants/colors.dart';
 import '../../../core/utils/loading.dart';
 import '../../../core/utils/page_creation_pass.dart';
 import '../../../entities/cart.dart';
+import '../../../entities/prices_info.dart';
 import '../../../entities/user.dart';
+import '../../../entities/validity.dart';
 import '../widgets/pass_not_selected_card.dart';
 import '../widgets/pass_selected_card.dart';
 
@@ -60,7 +62,15 @@ class _PageSelectionPassFastOrderState
                     domain: cart.domain,
                     user: state.user,
                     startDate: formatter.format(cart.startDate),
-                    selectedContacts: cart.selectedContacts));
+                    selectedContacts: cart.selectedContacts,
+                    selectedValidity: Validity(
+                        label: "1 Jour",
+                        shortName: "1DAY",
+                        pricesInfo: PricesInfo(
+                            startDate: "",
+                            consumerCategory: "",
+                            bestPrice: 0,
+                            basePrice: 0))));
           }
         }
       },
@@ -88,7 +98,15 @@ class _PageSelectionPassFastOrderState
                             domain: cart.domain,
                             user: user!,
                             startDate: formatter.format(cart.startDate),
-                            selectedContacts: cart.selectedContacts));
+                            selectedContacts: cart.selectedContacts,
+                            selectedValidity: Validity(
+                                label: "1 Jour",
+                                shortName: "1DAY",
+                                pricesInfo: PricesInfo(
+                                    startDate: "",
+                                    consumerCategory: "",
+                                    bestPrice: 0,
+                                    basePrice: 0))));
                   } else
                     isNotJustLoaded = false;
                 } else if (cart.selectedContacts.isNotEmpty &&
@@ -104,7 +122,15 @@ class _PageSelectionPassFastOrderState
                             domain: cart.domain,
                             user: user!,
                             startDate: formatter.format(cart.startDate),
-                            selectedContacts: cart.selectedContacts));
+                            selectedContacts: cart.selectedContacts,
+                            selectedValidity: Validity(
+                                label: "1 Jour",
+                                shortName: "1DAY",
+                                pricesInfo: PricesInfo(
+                                    startDate: "",
+                                    consumerCategory: "",
+                                    bestPrice: 0,
+                                    basePrice: 0))));
                   } else {
                     isNotJustLoaded = false;
                     if (cart.promotions.isNotEmpty && !popUpPromo) {

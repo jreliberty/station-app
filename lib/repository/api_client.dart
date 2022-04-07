@@ -10,13 +10,13 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../entities/contact.dart';
 
 import '../constants/routes.dart';
 import '../entities/advantage.dart';
 import '../entities/api_exception.dart';
 import '../entities/cart.dart';
 import '../entities/config.dart';
+import '../entities/contact.dart';
 import '../entities/domain.dart';
 import '../entities/offer.dart';
 import '../entities/open_pass_response.dart';
@@ -28,6 +28,7 @@ import '../entities/push_notification.dart';
 import '../entities/station.dart';
 import '../entities/token.dart';
 import '../entities/user.dart';
+import '../entities/validity.dart';
 import '../entities/violation_error.dart';
 import 'helpers/api_helper.dart';
 import 'helpers/logger.dart';
@@ -532,7 +533,7 @@ class ApiClient {
         var jsonResult = jsonDecode(response.body);
         var userCreated = User.fromJson(json: jsonResult, jsonContacts: null);
 
-      print("keski se passeee");
+        print("keski se passeee");
         var user = await updateContactPersonalInfo(
             body: bodyPhone, contactId: userCreated.contactId);
 
@@ -1386,7 +1387,8 @@ class ApiClient {
       required Station station,
       required Domain domain,
       required String startDate,
-      required List<Contact> selectedContacts}) async {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) async {
     try {
       var token = await apiHelper.getCachedToken();
       var headers = apiHelper.getHeaders(jwt: token.token);
@@ -1400,7 +1402,7 @@ class ApiClient {
           contacts: contacts,
           domain: domain,
           station: station,
-          startDate: startDate);
+          startDate: startDate, selectedValidity: selectedValidity);
       String queryString = Uri(queryParameters: queryParams).query;
       var requestUrl = Routes.API_GET_SIMULATION + '?' + queryString;
       final response =
@@ -1411,7 +1413,8 @@ class ApiClient {
             user: user,
             domain: domain,
             station: station,
-            selectedContacts: selectedContacts);
+            selectedContacts: selectedContacts,
+            selectedValidity: selectedValidity);
         if (user.contacts.length > 3) {
           for (var i = 1; i <= user.contacts.length / 3; i++) {
             contacts.clear();
@@ -1423,7 +1426,7 @@ class ApiClient {
                 contacts: contacts,
                 domain: domain,
                 station: station,
-                startDate: startDate);
+                startDate: startDate, selectedValidity: selectedValidity);
             String queryString = Uri(queryParameters: queryParams).query;
             var requestUrl = Routes.API_GET_SIMULATION + '?' + queryString;
             final responseExtra =
@@ -1504,7 +1507,8 @@ class ApiClient {
       required Station station,
       required Domain domain,
       required String startDate,
-      required List<Contact> selectedContacts}) async {
+      required List<Contact> selectedContacts,
+      required Validity selectedValidity}) async {
     try {
       var token = await apiHelper.getCachedToken();
       var headers = apiHelper.getHeaders(jwt: token.token);
@@ -1513,7 +1517,8 @@ class ApiClient {
           domain: domain,
           station: station,
           startDate: startDate,
-          selectedContacts: selectedContacts);
+          selectedContacts: selectedContacts,
+          selectedValidity: selectedValidity);
       String queryString = Uri(queryParameters: queryParams).query;
       var requestUrl = Routes.API_GET_SIMULATION + '?' + queryString;
       final response =
@@ -1524,7 +1529,8 @@ class ApiClient {
             user: user,
             domain: domain,
             station: station,
-            selectedContacts: selectedContacts);
+            selectedContacts: selectedContacts,
+            selectedValidity: selectedValidity);
         return cart;
       } else {
         Sentry.configureScope(
