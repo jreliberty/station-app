@@ -125,6 +125,7 @@ class ApiHelper {
   // }
 
   Map<String, dynamic> getParamsOrder({required Cart cart}) {
+    print(cart.selectedValidity);
     var params = <String, dynamic>{};
     cart.selectedContacts.forEach((element) {
       print(element.elibertyId);
@@ -142,7 +143,7 @@ class ApiHelper {
     params['ctid'] = cart.station.contractorId.toString();
     params['s'] = formatter.format(cart.startDate);
     params['pc'] = cart.domain.shortname;
-    params['vc'] = cart.selectedValidity;
+    params['vc'] = cart.selectedValidity!.shortName;
     print(params);
     return params;
   }
