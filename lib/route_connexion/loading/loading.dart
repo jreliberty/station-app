@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:station/blocs/connexion/connexion_bloc.dart';
 
 import '../../blocs/config/config_bloc.dart';
 import '../../blocs/consumer/consumer_bloc.dart';
 import '../../blocs/favorite_station/favorite_station_bloc.dart';
 import '../../blocs/home/home_bloc.dart';
-import '../../blocs/login/login_bloc.dart';
 import '../../blocs/newsletter/newsletter_bloc.dart';
 import '../../blocs/notifications/notifications_bloc.dart';
 import '../../blocs/orders_history/orders_history_bloc.dart';
@@ -33,7 +33,7 @@ class _LoadingConnectionState extends State<LoadingConnection> {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<LoginBloc, LoginState>(
+        BlocListener<ConnexionBloc, ConnexionState>(
           listener: (context, state) async {
             print(state);
             if (state is GettingJwtDone) {
@@ -55,7 +55,6 @@ class _LoadingConnectionState extends State<LoadingConnection> {
               });
             }
             if (state is GettingJwtFailure) {
-              BlocProvider.of<LoginBloc>(context).add(GetUrlForLoginEvent());
               showCupertinoModalPopup(
                   context: context, builder: (context) => PageLogin());
             }
@@ -85,7 +84,7 @@ class _LoadingConnectionState extends State<LoadingConnection> {
           },
         ),
       ],
-      child: BlocBuilder<LoginBloc, LoginState>(
+      child: BlocBuilder<ConnexionBloc, ConnexionState>(
         builder: (context, stateLogin) {
           return BlocBuilder<ConsumerBloc, ConsumerState>(
             builder: (context, stateConsumer) {
@@ -121,7 +120,7 @@ class _LoadingConnectionState extends State<LoadingConnection> {
                   Center(
                       child: Container(
                           child: Image.asset(
-                    "assets/splashscreen/logo.png",
+                    "assets/splashscreen/logo-baseline-rvb.png",
                     height: 130,
                     width: 270,
                   ))),

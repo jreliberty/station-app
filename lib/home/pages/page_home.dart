@@ -558,46 +558,47 @@ class _PageHomeState extends State<PageHome> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
+                                              // Padding(
+                                              //   padding: const EdgeInsets.only(
+                                              //     top: 23,
+                                              //     left: 24,
+                                              //   ),
+                                              //   child: Text(
+                                              //     'Bons plans',
+                                              //     style: GoogleFonts.roboto(
+                                              //         height: 1.2,
+                                              //         fontSize: 20,
+                                              //         color: Color.fromRGBO(
+                                              //             0, 16, 24, 1),
+                                              //         fontWeight:
+                                              //             FontWeight.w700),
+                                              //   ),
+                                              // ),
+                                              // Container(
+                                              //   height: 430,
+                                              //   child: ListView.builder(
+                                              //     shrinkWrap: true,
+                                              //     padding: EdgeInsets.only(
+                                              //         top: 0,
+                                              //         right: 24,
+                                              //         left: 24),
+                                              //     scrollDirection:
+                                              //         Axis.horizontal,
+                                              //     itemCount: listOffers.length,
+                                              //     itemBuilder:
+                                              //         (context, index) {
+                                              //       return OfferCard(
+                                              //         offer: listOffers[index],
+                                              //         listStations:
+                                              //             listStations,
+                                              //       );
+                                              //     },
+                                              //   ),
+                                              // ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                  top: 23,
-                                                  left: 24,
-                                                ),
-                                                child: Text(
-                                                  'Bons plans',
-                                                  style: GoogleFonts.roboto(
-                                                      height: 1.2,
-                                                      fontSize: 20,
-                                                      color: Color.fromRGBO(
-                                                          0, 16, 24, 1),
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 430,
-                                                child: ListView.builder(
-                                                  shrinkWrap: true,
-                                                  padding: EdgeInsets.only(
-                                                      top: 0,
-                                                      right: 24,
-                                                      left: 24),
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  itemCount: listOffers.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return OfferCard(
-                                                      offer: listOffers[index],
-                                                      listStations:
-                                                          listStations,
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 48,
+                                                    // top: 48,
+                                                    top: 23,
                                                     left: 24,
                                                     bottom: 16),
                                                 child: Text(

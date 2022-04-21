@@ -40,22 +40,28 @@ en moins d’une minute''',
             height: 48,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(0, 125, 188, 1)),
+                  primary: ColorsApp.ContentActive,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.0),
+                  ),
+                ),
                 onPressed: () async {
                   widget.controller.animateTo(1);
                 },
                 child: Text(
-                  'Recharger mon Pass',
-                  style: GoogleFonts.roboto(
+                  'Recharger ma carte',
+                  style: GoogleFonts.poppins(
                       letterSpacing: 0.27,
                       height: 1,
                       fontSize: 16,
-                          color: ColorsApp.ContentPrimaryReversed,
+                      color: ColorsApp.ContentPrimaryReversed,
                       fontWeight: FontWeight.w700),
                 )),
           ),
         ),
-        SizedBox(height: 24,)
+        SizedBox(
+          height: 24,
+        )
       ],
     );
   }

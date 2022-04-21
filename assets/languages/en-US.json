@@ -377,7 +377,7 @@
             "info": "La station a été définie comme favorite",
             "datepicker": {
                 "title": "Quand pars-tu {} ?",
-                "description": "Achète ton forfait journée pour aujourd’hui avant 13h !",
+                "description": "Achète ton forfait pour aujourd’hui avant 13h !",
                 "buttons": {
                     "button1": {
                         "label": "🚀 Aujourd’hui ! ",

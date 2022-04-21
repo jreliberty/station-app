@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:station/blocs/connexion/connexion_bloc.dart';
 
 import 'blocs/cart/cart_bloc.dart';
 import 'blocs/config/config_bloc.dart';
@@ -14,7 +15,6 @@ import 'blocs/datepicker/datepicker_bloc.dart';
 import 'blocs/fast_cart/fast_cart_bloc.dart';
 import 'blocs/favorite_station/favorite_station_bloc.dart';
 import 'blocs/home/home_bloc.dart';
-import 'blocs/login/login_bloc.dart';
 import 'blocs/network/network_bloc.dart';
 import 'blocs/newsletter/newsletter_bloc.dart';
 import 'blocs/notifications/notifications_bloc.dart';
@@ -92,9 +92,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           create: (context) => CartBloc(apiRepository: widget.apiRepository),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(apiRepository: widget.apiRepository),
-        ),
-        BlocProvider(
           create: (context) => DatepickerBloc(),
         ),
         BlocProvider(
@@ -134,6 +131,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         BlocProvider(
           create: (context) =>
               FastCartBloc(apiRepository: widget.apiRepository),
+        ),
+        BlocProvider(
+          create: (context) =>
+              ConnexionBloc(apiRepository: widget.apiRepository),
         ),
         BlocProvider(
           create: (context) => NetworkBloc()..add(ListenConnection()),

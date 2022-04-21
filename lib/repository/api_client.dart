@@ -1055,44 +1055,28 @@ class ApiClient {
     }
   }
 
-  Future<Token> getJwt(Uri url) async {
+  Future<Token> getJwt(
+      {required String email, required String password}) async {
     var prefs = await SharedPreferences.getInstance();
     try {
-      var code = url.queryParameters['code'];
-      var state = url.queryParameters['state'];
-      Map<String, dynamic> body = {
-        'code': code,
-        'state': state,
-        'redirect_uri': Routes.API_IDENTIFICATION
-      };
-      dio.options.contentType = Headers.formUrlEncodedContentType;
-      final response = await dio.post(
-        Routes.API_AUTH_URL,
-        data: body,
-      );
-      print(response.statusCode);
-      print(response.data);
-      if (response.statusCode == 200) {
-        await prefs.setString('token', response.data['token']);
-        await prefs.setString('refresh_token', response.data['refresh_token']);
-        print("jusque làa ça passe");
-        return Token.fromJson(response.data);
+      var headers = apiHelper.getHeaders();
+      final response = await client.post(Uri.parse(Routes.API_GET_JWT_ADMIN),
+          headers: headers,
+          body: jsonEncode({
+            "email": email,
+            "password": password,
+          }));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        await prefs.setString('token', jsonDecode(response.body)['token']);
+        await prefs.setString(
+            'refresh_token', jsonDecode(response.body)['refresh_token']);
+        print("Saved !");
+        return Token.fromJson(jsonDecode(response.body));
       } else {
-        Sentry.configureScope(
-          (scope) => {
-            scope.setExtra('statusCode', response.statusCode),
-            scope.setExtra('response', response.data),
-          },
-        );
-
-        await Sentry.captureMessage(
-          'getJwt Error ',
-          level: SentryLevel.error,
-        );
-        throw ApiException(errors: ViolationsError.fromJson(response.data));
+        throw ApiException(
+            errors: ViolationsError.fromJson(jsonDecode(response.body)));
       }
     } on SocketException catch (e, stackTrace) {
-      print("0");
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult == ConnectivityResult.none) {
         throw apiHelper.getApiException(
@@ -1110,7 +1094,6 @@ class ApiClient {
           exception: e,
           stackTrace: stackTrace);
     } on HttpException catch (e, stackTrace) {
-      print("1");
       throw apiHelper.getApiException(
           code: 1001,
           message: 'No Service Found',
@@ -1118,7 +1101,6 @@ class ApiClient {
           exception: e,
           stackTrace: stackTrace);
     } on FormatException catch (e, stackTrace) {
-      print("2");
       throw apiHelper.getApiException(
           code: 1002,
           message: 'Invalid Response format',
@@ -1126,15 +1108,93 @@ class ApiClient {
           exception: e,
           stackTrace: stackTrace);
     } on Exception {
-      print("3");
       rethrow;
     } on Error catch (e) {
-      print("4");
-      ElibertyLogger.info(
-          '** Elib ** getJWT ' + e.toString() + e.stackTrace.toString());
+      print('** Elib ** getJwt ' + e.toString() + e.stackTrace.toString());
       rethrow;
     }
   }
+
+  // Future<Token> getJwt(Uri url) async {
+  //   var prefs = await SharedPreferences.getInstance();
+  //   try {
+  //     var code = url.queryParameters['code'];
+  //     var state = url.queryParameters['state'];
+  //     Map<String, dynamic> body = {
+  //       'code': code,
+  //       'state': state,
+  //       'redirect_uri': Routes.API_IDENTIFICATION
+  //     };
+  //     dio.options.contentType = Headers.formUrlEncodedContentType;
+  //     final response = await dio.post(
+  //       Routes.API_AUTH_URL,
+  //       data: body,
+  //     );
+  //     print(response.statusCode);
+  //     print(response.data);
+  //     if (response.statusCode == 200) {
+  //       await prefs.setString('token', response.data['token']);
+  //       await prefs.setString('refresh_token', response.data['refresh_token']);
+  //       print("jusque làa ça passe");
+  //       return Token.fromJson(response.data);
+  //     } else {
+  //       Sentry.configureScope(
+  //         (scope) => {
+  //           scope.setExtra('statusCode', response.statusCode),
+  //           scope.setExtra('response', response.data),
+  //         },
+  //       );
+
+  //       await Sentry.captureMessage(
+  //         'getJwt Error ',
+  //         level: SentryLevel.error,
+  //       );
+  //       throw ApiException(errors: ViolationsError.fromJson(response.data));
+  //     }
+  //   } on SocketException catch (e, stackTrace) {
+  //     print("0");
+  //     var connectivityResult = await (Connectivity().checkConnectivity());
+  //     if (connectivityResult == ConnectivityResult.none) {
+  //       throw apiHelper.getApiException(
+  //           code: 1000,
+  //           message: 'No Internet',
+  //           propertyPath: null,
+  //           exception: e,
+  //           stackTrace: stackTrace);
+  //     }
+
+  //     throw apiHelper.getApiException(
+  //         code: 1003,
+  //         message: 'Website not available',
+  //         propertyPath: null,
+  //         exception: e,
+  //         stackTrace: stackTrace);
+  //   } on HttpException catch (e, stackTrace) {
+  //     print("1");
+  //     throw apiHelper.getApiException(
+  //         code: 1001,
+  //         message: 'No Service Found',
+  //         propertyPath: null,
+  //         exception: e,
+  //         stackTrace: stackTrace);
+  //   } on FormatException catch (e, stackTrace) {
+  //     print("2");
+  //     throw apiHelper.getApiException(
+  //         code: 1002,
+  //         message: 'Invalid Response format',
+  //         propertyPath: null,
+  //         exception: e,
+  //         stackTrace: stackTrace);
+  //   } on Exception {
+  //     print("3");
+  //     rethrow;
+  //   } on Error catch (e) {
+  //     print("4");
+  //     ElibertyLogger.info(
+  //         '** Elib ** getJWT ' + e.toString() + e.stackTrace.toString());
+  //     rethrow;
+  //   }
+  // }
 
   Future<Token> refreshJwt() async {
     try {
@@ -1402,7 +1462,8 @@ class ApiClient {
           contacts: contacts,
           domain: domain,
           station: station,
-          startDate: startDate, selectedValidity: selectedValidity);
+          startDate: startDate,
+          selectedValidity: selectedValidity);
       String queryString = Uri(queryParameters: queryParams).query;
       var requestUrl = Routes.API_GET_SIMULATION + '?' + queryString;
       final response =
@@ -1426,7 +1487,8 @@ class ApiClient {
                 contacts: contacts,
                 domain: domain,
                 station: station,
-                startDate: startDate, selectedValidity: selectedValidity);
+                startDate: startDate,
+                selectedValidity: selectedValidity);
             String queryString = Uri(queryParameters: queryParams).query;
             var requestUrl = Routes.API_GET_SIMULATION + '?' + queryString;
             final responseExtra =

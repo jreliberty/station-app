@@ -111,8 +111,12 @@ class ApiRepository {
     return apiClient.getUrlOneId();
   }
 
-  Future<Token> getJwt(Uri url) {
-    return apiClient.getJwt(url);
+  // Future<Token> getJwt(Uri url) {
+  //   return apiClient.getJwt(url);
+  // }
+  Future<Token> getJwt(
+      {required String email, required String password}) async {
+    return apiClient.getJwt(email: email, password: password);
   }
 
   Future<Token> refreshJwt() {

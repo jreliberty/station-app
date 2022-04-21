@@ -1,77 +1,14 @@
-import 'dart:async';
-import 'dart:collection';
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_remix/flutter_remix.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:station/constants/colors.dart';
 
-import '../../../blocs/login/login_bloc.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/routes.dart';
-import '../../identification/pages/page_identification.dart';
+import '../../../blocs/connexion/connexion_bloc.dart';
 import '../../loading/loading.dart';
-
-class MyChromeSafariBrowser extends ChromeSafariBrowser {
-  @override
-  void onOpened() {}
-
-  @override
-  void onCompletedInitialLoad() {}
-
-  @override
-  void onClosed() {}
-}
-
-ChromeSafariBrowser browserChrome = ChromeSafariBrowser();
-
-class MyInAppBrowser extends InAppBrowser {
-  final BuildContext context;
-  MyInAppBrowser(this.context,
-      {int? windowId, UnmodifiableListView<UserScript>? initialUserScripts})
-      : super(windowId: windowId, initialUserScripts: initialUserScripts);
-
-  @override
-  Future onBrowserCreated() async {}
-
-  @override
-  Future onLoadStart(url) async {}
-
-  @override
-  Future onLoadStop(url) async {
-    pullToRefreshController?.endRefreshing();
-    if (url != null) if (url
-        .toString()
-        .contains(Routes.API_IDENTIFICATION_TO_CONTAIN)) {
-      BlocProvider.of<LoginBloc>(context).add(GetJwtTokenEvent(uri: url));
-      close();
-      browserChrome.close();
-    }
-  }
-
-  @override
-  void onLoadError(url, code, message) {
-    pullToRefreshController?.endRefreshing();
-  }
-
-  @override
-  void onProgressChanged(progress) {
-    if (progress == 100) {
-      pullToRefreshController?.endRefreshing();
-    }
-  }
-
-  @override
-  void onExit() {}
-
-  @override
-  Future<NavigationActionPolicy> shouldOverrideUrlLoading(
-      navigationAction) async {
-    return NavigationActionPolicy.ALLOW;
-  }
-}
 
 class PageLogin extends StatefulWidget {
   PageLogin({Key? key}) : super(key: key);
@@ -82,187 +19,362 @@ class PageLogin extends StatefulWidget {
 
 class _PageLoginState extends State<PageLogin> {
   List<Locale> languages = [Locale('fr', 'FR'), Locale('en', 'US')];
+  final _formKey = GlobalKey<FormState>();
 
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  BehaviorSubject<String> _bhvsemail = BehaviorSubject.seeded('');
+  BehaviorSubject<String> _bhvspassword = BehaviorSubject.seeded('');
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<ConnexionBloc>(context).add(GetCredentialsEvent());
+  }
+
+  bool keepLogin = false;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) async {
+    return BlocListener<ConnexionBloc, ConnexionState>(
+      listener: (context, state) {
         if (state is GettingJwtInProgress) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => LoadingConnection()),
-              (Route<dynamic> route) => false);
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => LoadingConnection()));
         }
-        if (state is GettingUrlDone) {
-          showCupertinoModalPopup(
-              context: context, builder: (context) => PageIdentification());
-          // await browserChrome.open(
-          //     url: Uri.parse(state.url),
-          //     options: ChromeSafariBrowserClassOptions(
-          //         android: AndroidChromeCustomTabsOptions(
-          //             addDefaultShareMenuItem: false),
-          //         ios: IOSSafariOptions(barCollapsingEnabled: true)));
-
-          // final MyInAppBrowser browser = new MyInAppBrowser(context);
-          // try {
-          //   await browser.close();
-          // } catch (e) {}
-          // await browser.openUrlRequest(
-          //     urlRequest: URLRequest(
-          //       url: Uri.parse(state.url),
-          //       iosHttpShouldHandleCookies: true,
-          //     ),
-          //     options: InAppBrowserClassOptions(
-          //         inAppWebViewGroupOptions: InAppWebViewGroupOptions(
-          //           android: AndroidInAppWebViewOptions(
-          //               supportMultipleWindows: true),
-          //           crossPlatform: InAppWebViewOptions(
-          //             useShouldOverrideUrlLoading: true,
-          //             useOnLoadResource: true,
-          //             userAgent:
-          //                 "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19",
-          //           ),
-          //         ),
-          //         crossPlatform: InAppBrowserOptions(
-          //             hideUrlBar: true, hideToolbarTop: false),
-          //         android: AndroidInAppBrowserOptions()));
-        }
+        // TODO: implement listener
       },
       child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(0, 125, 188, 1),
-            image: DecorationImage(
-              image: AssetImage("assets/login.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 16,
-                ),
-                // Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 10.0),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(4.0),
-                //     border: Border.all(color: Colors.white, width: 1),
-                //   ),
-                //   child: DropdownButtonHideUnderline(
-                //     child: DropdownButton<int>(
-                //         icon: Icon(
-                //           CupertinoIcons.chevron_down,
-                //           color: Colors.white,
-                //           size: 14,
-                //         ),
-                //         dropdownColor: Colors.grey,
-                //         style: GoogleFonts.roboto(
-                //             height: 1.11,
-                //             fontSize: 14,
-                //              color: ColorsApp.ContentPrimaryReversed,
-                //             fontWeight: FontWeight.w500),
-                //         value: _indexLanguage,
-                //         items: [
-                //           DropdownMenuItem(
-                //             child: Text("France - FR"),
-                //             value: 0,
-                //           ),
-                //           DropdownMenuItem(
-                //             child: Text("England - EN"),
-                //             value: 1,
-                //           )
-                //         ],
-                //         onChanged: (var value) {
-                //           setState(() {
-                //             _indexLanguage = value!;
-                //             _chosenLanguage = languages[value];
-                //           });
-                //           EasyLocalization.of(context)!
-                //               .setLocale(_chosenLanguage);
-                //         },
-                //         hint: Text("Select item")),
+        body: BlocBuilder<ConnexionBloc, ConnexionState>(
+          builder: (context, state) {
+            if (state is GettingCredentialsDone) {
+                _emailController.text = state.credentials.email;
+                _passwordController.text = state.credentials.password;
+                _bhvsemail.value = state.credentials.email;
+                _bhvspassword.value = state.credentials.password;
+              }
+            return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Container(
+                width: double.infinity,
+                color: Color.fromARGB(255, 233, 231, 231),
+                // decoration: BoxDecoration(
+                //   color: Color.fromRGBO(0, 125, 188, 1),
+                //   image: DecorationImage(
+                //     image: AssetImage("assets/login_fond.jpeg"),
+                //     fit: BoxFit.cover,
                 //   ),
                 // ),
-                Expanded(
+                child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        tr('connection.login.title'),
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.roboto(
-                            height: 1.11,
-                            fontSize: 36,
-                            //color: Color(#687787),
-                            color: ColorsApp.ContentPrimaryReversed,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        tr('connection.login.subtitle'),
-                        style: GoogleFonts.roboto(
-                            height: 1.65,
-                            fontSize: 17,
-                            //color: Color(#687787),
-                            color: ColorsApp.ContentPrimaryReversed,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 16,
+                      Container(
+                        color: Colors.white,
+                        width: double.infinity,
+                        height: 40,
                       ),
                       Container(
                         width: double.infinity,
-                        height: 56,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: ColorsApp.ContentPrimaryReversed,
-                          ),
-                          onPressed: () async {
-                            BlocProvider.of<LoginBloc>(context)
-                                .add(GetUrlForLoginEvent());
-
-                            // showCupertinoModalPopup(
-                            //     context: context,
-                            //     builder: (context) => PageIdentification());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.person_outline,
-                                color: Color.fromRGBO(0, 16, 21, 1),
-                              ),
-                              Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    tr('connection.login.buttons.button1.label'),
-                                    style: GoogleFonts.roboto(
-                                        letterSpacing: 0.27,
-                                        height: 1,
-                                        fontSize: 16,
-                                        color: ColorsApp.ContentPrimary,
-                                        fontWeight: FontWeight.w700),
-                                  )),
-                            ],
+                        color: Colors.white,
+                        child: SvgPicture.asset('assets/logo_npy.svg'),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        width: double.infinity,
+                        height: 8,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(0, 125, 188, 1),
+                          image: DecorationImage(
+                            image: AssetImage("assets/en_tete.png"),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 36,
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            NotificationListener<
+                                OverscrollIndicatorNotification>(
+                              onNotification:
+                                  (OverscrollIndicatorNotification overScroll) {
+                                overScroll.disallowIndicator();
+                                return false;
+                              },
+                              child: Container(
+                                color: Colors.white,
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "S'identifier",
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 25,
+                                              color: ColorsApp.ContentPrimary,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8, top: 16),
+                                          child: TextFormField(
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            textCapitalization:
+                                                TextCapitalization.none,
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            onChanged: (value) =>
+                                                _bhvsemail.value = value,
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 17,
+                                                //color: Color(#687787),
+                                                color: const Color.fromRGBO(
+                                                    0, 16, 24, 1),
+                                                fontWeight: FontWeight.normal),
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(
+                                                FlutterRemix.asterisk,
+                                                size: 10,
+                                              ),
+                                              focusColor: const Color.fromRGBO(
+                                                  45, 18, 40, 1),
+                                              hoverColor: const Color.fromRGBO(
+                                                  45, 18, 40, 1),
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              fillColor: Colors.white,
+                                              //labelText: 'Email',
+                                              labelStyle: GoogleFonts.roboto(
+                                                  letterSpacing: -0.32,
+                                                  fontSize: 16,
+                                                  //color: Color(#687787),
+                                                  color: const Color.fromRGBO(
+                                                      104, 119, 135, 1),
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                              hintText: "Email",
+                                              hintStyle: GoogleFonts.roboto(
+                                                  fontSize: 17,
+                                                  //color: Color(#687787),
+                                                  color: const Color.fromRGBO(
+                                                      137, 150, 162, 1),
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                              border: new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        5.0),
+                                                borderSide: new BorderSide(
+                                                    color: Color.fromRGBO(
+                                                        0, 56, 118, 1)),
+                                              ),
+                                            ),
+                                            controller: _emailController,
+                                            onFieldSubmitted: (value) {
+                                              _emailController.text = value;
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Saisissez votre email.';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8, top: 8),
+                                          child: TextFormField(
+                                            textCapitalization:
+                                                TextCapitalization.none,
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            obscureText: true,
+                                            enableSuggestions: false,
+                                            autocorrect: false,
+                                            onChanged: (value) =>
+                                                _bhvspassword.value = value,
+                                            style: GoogleFonts.roboto(
+                                                fontSize: 17,
+                                                //color: Color(#687787),
+                                                color: const Color.fromRGBO(
+                                                    0, 16, 24, 1),
+                                                fontWeight: FontWeight.normal),
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(
+                                                FlutterRemix.asterisk,
+                                                size: 10,
+                                              ),
+                                              focusColor: const Color.fromRGBO(
+                                                  45, 18, 40, 1),
+                                              hoverColor: const Color.fromRGBO(
+                                                  45, 18, 40, 1),
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              fillColor: Colors.white,
+                                              labelStyle: GoogleFonts.roboto(
+                                                  letterSpacing: -0.32,
+                                                  fontSize: 16,
+                                                  //color: Color(#687787),
+                                                  color: const Color.fromRGBO(
+                                                      104, 119, 135, 1),
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                              hintText: "Mot de passe",
+                                              hintStyle: GoogleFonts.roboto(
+                                                  fontSize: 17,
+                                                  //color: Color(#687787),
+                                                  color: const Color.fromRGBO(
+                                                      137, 150, 162, 1),
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                              border: new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        5.0),
+                                                borderSide: new BorderSide(
+                                                    color: Color.fromRGBO(
+                                                        0, 56, 118, 1)),
+                                              ),
+                                            ),
+                                            controller: _passwordController,
+                                            onFieldSubmitted: (value) {
+                                              _passwordController.text = value;
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Saisissez votre mot de passe.';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () => setState(() {
+                                            keepLogin = !keepLogin;
+                                          }),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 0),
+                                            child: Row(
+                                              children: [
+                                                Checkbox(
+                                                    value: keepLogin,
+                                                    onChanged: (value) =>
+                                                        setState(() {
+                                                          keepLogin =
+                                                              !keepLogin;
+                                                        })),
+                                                Text(
+                                                  'Se souvenir de moi',
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.roboto(
+                                                      letterSpacing: -0.2,
+                                                      fontSize: 15,
+                                                      color: ColorsApp
+                                                          .ContentPrimary,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        StreamBuilder<Object>(
+                                            stream: Rx.combineLatest2(
+                                                _bhvsemail, _bhvspassword, (
+                                              String email,
+                                              String password,
+                                            ) {
+                                              return (email != '' &&
+                                                  password != '');
+                                            }),
+                                            builder: (context, snapshot) {
+                                              return Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 16, top: 8),
+                                                child: SizedBox(
+                                                  height: 40,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary: ColorsApp
+                                                            .ContentActive,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      24.0),
+                                                        ),
+                                                      ),
+                                                      onPressed:
+                                                          (snapshot.data ==
+                                                                  false)
+                                                              ? null
+                                                              : () async {
+                                                                  var prefs =
+                                                                      await SharedPreferences
+                                                                          .getInstance();
+                                                                  await prefs.setString(
+                                                                      'email',
+                                                                      _emailController
+                                                                          .text);
+                                                                  await prefs.setString(
+                                                                      'password',
+                                                                      _passwordController
+                                                                          .text);
+                                                                  BlocProvider.of<
+                                                                              ConnexionBloc>(
+                                                                          context)
+                                                                      .add(GetJWTEvent(
+                                                                          email: _emailController
+                                                                              .text,
+                                                                          password:
+                                                                              _passwordController.text));
+                                                                },
+                                                      child: Text(
+                                                        'Connexion',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                fontSize: 15,
+                                                                //color: Color(#687787),
+                                                                color: const Color
+                                                                        .fromRGBO(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    1),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                      )),
+                                                ),
+                                              );
+                                            }),
+                                      ],
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

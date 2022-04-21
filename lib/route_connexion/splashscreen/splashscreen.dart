@@ -9,12 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upgrader/upgrader.dart';
 
-import '../../blocs/login/login_bloc.dart';
 import '../../core/errors/page_airplane_mode.dart';
 import '../../repository/helpers/api_helper.dart';
-import '../loading/loading.dart';
 import '../login/pages/page_login.dart';
 import '../terms/pages/page_terms.dart';
 import 'bot_clipper.dart';
@@ -87,43 +84,19 @@ class _SplashScreenState extends State<SplashScreen>
       if (isAirplaneModeOn)
         await showCupertinoModalPopup(
             context: context, builder: (context) => PageAirplaneMode());
-      if (!hasExpired) {
-        BlocProvider.of<LoginBloc>(context)
-            .add(JwtNotExpiredEvent(token: token));
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoadingConnection()));
-      } else if (hasExpired && token.refreshToken != '') {
-        BlocProvider.of<LoginBloc>(context).add(RefreshJwtTokenEvent());
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoadingConnection()));
-      } else if (goToTerms)
+      if (goToTerms)
         showCupertinoModalPopup(
             context: context, builder: (context) => PageTerms());
       else {
-        ApiHelper apiHelper = ApiHelper();
-        var token = await apiHelper.getCachedToken();
-        if (token.token != '') {
-          BlocProvider.of<LoginBloc>(context).add(GetUrlForLoginEvent());
-          showCupertinoModalPopup(
-              context: context, builder: (context) => PageLogin());
-
-          // showCupertinoModalPopup(
-          //     context: context, builder: (context) => PageIdentification());
-        } else
-          showCupertinoModalPopup(
-              context: context, builder: (context) => PageLogin());
+        showCupertinoModalPopup(
+            context: context, builder: (context) => PageLogin());
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
-        
-        // TODO: implement listener
-      },
-      child: Scaffold(
+    return Scaffold(
           body: Stack(
         children: <Widget>[
           Container(
@@ -195,7 +168,7 @@ class _SplashScreenState extends State<SplashScreen>
           /*BottomCustomPainter.splashScreen(
                       child: Text('data'), size: MediaQuery.of(context).size)*/
         ],
-      )),
+      )
     );
   }
 }

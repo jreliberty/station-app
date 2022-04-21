@@ -43,4 +43,6 @@ class Routes {
   static const API_REDIRECT =
       MyConfig.BASE_URL + '/auth_url?redirect_uri=' + API_IDENTIFICATION;
   static const API_REFRESH_TOKEN = MyConfig.BASE_URL + "/api/token/refresh";
+  static const API_GET_JWT_ADMIN =
+      MyConfig.BASE_URL + '/api/authentication_token';
 }
